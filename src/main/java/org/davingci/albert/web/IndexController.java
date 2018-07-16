@@ -16,10 +16,10 @@ public class IndexController {
     public String index() {
 		
 		if( httpSession.getAttribute("username") == null) {
-			return "/login";
+			return "login";
 		}
 				
-        return "/index";
+        return "index";
     }
 	
 	

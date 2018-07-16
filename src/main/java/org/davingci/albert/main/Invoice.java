@@ -31,16 +31,12 @@ public class Invoice implements Serializable{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
-    
-    
+        
     private String code;
     
     @Column(name="register_username")
     private String registerUsername;
     
-
-    private String registerTime;
-    
-   
+    private String registerTime;   
 
 }

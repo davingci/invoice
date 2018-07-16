@@ -1,13 +1,13 @@
 
 <!DOCTYPE html>
-<html lang="en">
-<head th:replace="fragments/head::head">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{layout2}">
+
      
 	</head>
 
 	<body class="login-layout">
 	
-	
+	<main role="main" layout:fragment="content">
 		<div class="main-container">
 			<div class="main-content">
 				<div class="row">
@@ -155,9 +155,9 @@
 		                    if (response.code == 200) {
 		                        //bootbox.alert("添加用户成功");
                             //window.sessionStorage.setItem('token', data.token);
-								window.sessionStorage.setItem("username",response.data.username);
-								console.log(reponse.data.username);
-		                    	window.location.href = baseurl + "/admin/index";
+								
+								
+		                    	window.location.href = baseurl + "/login";
 
 		                    }
 		                    else {
@@ -171,6 +171,6 @@
 		        });
 		    });
 		</script>
-	
+	</main>
 	</body>
 </html>

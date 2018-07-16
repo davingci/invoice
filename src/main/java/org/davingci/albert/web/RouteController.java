@@ -25,43 +25,48 @@ public class RouteController {
 	@Autowired
 	UserService userService;
 	
-    @GetMapping(value= {"/", "/login"})
-    public String login() {
-        return "/login";
+    @GetMapping("/")
+    public String logina() {
+        return "login";
+    }
+    
+    @GetMapping("/login")
+    public String loginb() {
+        return "login";
     }
 
     @GetMapping("/signup")
     public String signup() {
-        return "/signup";
+        return "signup";
     }
     
 	@GetMapping("/listInvoice")
 	public String listInvoice(ModelMap map) {
 		if(httpSession.getAttribute("username") == null) {
-			return "/login";
+			return "login";
 		}
 		List<Invoice> invoiceList = invoiceService.list();
 		map.addAttribute("invoiceList", invoiceList);
-		return "/pages/invoice/listInvoice";
+		return "pages/invoice/listInvoice";
 	}
 	
 	
 	@GetMapping("/addInvoice")
 	public String addInvoice() {
 		if(httpSession.getAttribute("username") == null) {
-			return "/index";
+			return "index";
 		}
-		return "/pages/invoice/addInvoice";
+		return "pages/invoice/addInvoice";
 	}
 	
 	@GetMapping("/listUser")
 	public String listUser(ModelMap map) {
 		if(httpSession.getAttribute("username") == null) {
-			return "/index";
+			return "index";
 		}
 		List<User> userList = userService.list();
 		map.addAttribute("userList", userList);
-		return "/pages/user/listUser";
+		return "pages/user/listUser";
 		
 	}
 	
@@ -69,35 +74,35 @@ public class RouteController {
 	@GetMapping("/addUser")
 	public String addUserService () {
 		if(httpSession.getAttribute("username") == null) {
-			return "/index";
+			return "index";
 		}
-		return "/pages/user/addUser";
+		return "pages/user/addUser";
 	}
 	
 	@GetMapping("/changepw")
 	public String changepw(ModelMap map) {
 		if(httpSession.getAttribute("username") == null) {
-			return "/index";
+			return "index";
 		}
 		String username = (String) httpSession.getAttribute("username");
 		User user = userService.getByUsername(username);
 		map.addAttribute("user", user);
-		return "/pages/user/changepw";
+		return "pages/user/changepw";
 	}
 	
 	
 	@GetMapping("/profile")
 	public String profile() {
 		if(httpSession.getAttribute("username") == null) {
-			return "/index";
+			return "index";
 		}
-		return "/pages/user/profile";
+		return "pages/user/profile";
 	}
 	
 	@GetMapping("/Logout")
 	public String logout() {
 		httpSession.removeAttribute("username");
-		return "/login";
+		return "login";
 	}
 
 
