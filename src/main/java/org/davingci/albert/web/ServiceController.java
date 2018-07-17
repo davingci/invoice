@@ -1,6 +1,8 @@
 package org.davingci.albert.web;
 
 import java.util.List;
+import java.util.Map;
+import java.util.stream.Collectors;
 
 import javax.servlet.http.HttpSession;
 
@@ -38,6 +40,12 @@ public class ServiceController {
 	@PostMapping("/AddInvoiceService")
 	public Response addInivoice(ModelMap map, @RequestParam String code, @RequestParam String registerUsername, @RequestParam String registerTime) {
 	List<Invoice> invoiceList = invoiceService.list();
+	//duplicated value check
+	Map<Integer, String> codeMap = invoiceList.stream().collect(Collectors.toMap(x -> x.getId(), x -> x.getCode()));
+		if(codeMap.containsValue(code)) {
+		return Response.builder().code(202).message("duplicated invoice code").build();
+	}
+	
 	Invoice invoice = Invoice.builder().code(code).registerUsername(registerUsername).registerTime(registerTime).build();
 	invoiceService.save(invoice);
 	invoiceList.add(invoice);
