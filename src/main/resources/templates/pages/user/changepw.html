@@ -52,7 +52,7 @@
 
 
 					<li class="">
-						<a th:href="@{/profile}">
+						<a th:href="@{/pages/user/changepw}">
 							<i class="menu-icon fa fa-tachometer"></i>
 
 							<span class="menu-text">
@@ -177,7 +177,7 @@
 								<form class="form-horizontal" id="form">
 									<div class="form-group">
 										<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> 用户名 </label>
-										<input type="hidden" name="id" value="${user.id}">
+										<input type="hidden" id="id" name="id" th:value="${user.id}">
 										<div class="col-sm-9">
 											<input type="text" id="username" name="username" th:value="${user.username}" class="col-xs-10 col-sm-5" readonly />
 										</div>
@@ -215,24 +215,29 @@
 	
 $(document).ready(function () {
     $("#btnForm").click(function () {
-        var options = {
-            url: '<%= request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+request.getContextPath()%>/UpdateUserService',
-            type: 'post',
-            dataType: 'text',
-            data: $("#form").serialize(),
-            success: function (data) {
-                if (data == "success") {
-                    
-                	bootbox.alert("修改密码成功")
+        var formData = new FormData();
+        formData.append("password",$("#password").val());
+        formData.append("id",$("#id").val());
+        
+        $.ajax({
+            url:baseurl + "/UpdateUserService",
+            method:"post",
+            data: formData,
+            processData: false,
+            contentType: false,
+            success: function (response) {
+                if(response.code == 200) {
+                	    bootbox.alert(response.message);
+                        //window.location.href = baseurl + "/index";
                 }
                 else {
-                	bootbox.alert(data);
+                    bootbox.alert(response.message);
                 }
+            },
+            failure: function (response) {
+                bootbox.alert("录入错误");
             }
-        };
-        	
-        $.ajax(options);
-        return false;
+        });
     });
 });
 

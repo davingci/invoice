@@ -52,7 +52,7 @@
 
 
 					<li class="">
-						<a th:href="@{/changepw}">
+						<a th:href="@{/pages/user/changepw}">
 							<i class="menu-icon fa fa-tachometer"></i>
 
 							<span class="menu-text">
@@ -204,7 +204,7 @@
 		                <td>
 		                <div th:if="${session.username == 'admin'}">
 		                	<button type="submit" class="btn btn-primary btn-xs" onclick="window.location='/addUser'">添加</button>
-							<a type="submit" class="btn btn-success btn-xs" th:href="@{/changepw(id=${user.id})}">重设密码</a>
+							<a type="submit" class="btn btn-success btn-xs" th:href="@{/pages/user/changepw(id=${user.id})}">重设密码</a>
 							<button class="btn btn-danger btn-xs" th:onclick="${'deleteUser('+  user.id +')'}">删除</button>
 						</div>
 							
@@ -239,13 +239,36 @@ function deleteUser(userid) {
 		bootbox.dialog({
 			 
 			  title: "删除用户",
-			  message: "确定删除用户:" + id,
+			  message: "确定删除用户:" + userid,
 			  buttons: {
 			    success: {
 			      label: "确定!",
 			      className: "btn-success",
 			      callback: function() {
-			    	  window.location.href = "<%= request.getContextPath()%>/DeleteUserService?id=" + userid;
+			    	  
+			          var formData = new FormData();
+			          formData.append("id",userid);
+			          
+			          $.ajax({
+			              url:baseurl + "/DeleteUserService",
+			              method:"post",
+			              data: formData,
+			              processData: false,
+			              contentType: false,
+			              success: function (response) {
+			                  if(response.code == 200) {
+
+			                          window.location.href = baseurl + "/listUser";
+			                  }
+			                  else {
+			                      bootbox.alert(response.message);
+			                  }
+			              },
+			              failure: function (response) {
+			                  bootbox.alert("删除错误");
+			              }
+			          });
+			    	  
 			      }
 			    },
 			    

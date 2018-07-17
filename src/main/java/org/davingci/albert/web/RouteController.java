@@ -12,6 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
 public class RouteController {
@@ -70,6 +71,7 @@ public class RouteController {
 		
 	}
 	
+
 	
 	@GetMapping("/addUser")
 	public String addUserService () {
@@ -79,7 +81,7 @@ public class RouteController {
 		return "pages/user/addUser";
 	}
 	
-	@GetMapping("/changepw")
+	@GetMapping("/pages/user/changepw")
 	public String changepw(ModelMap map) {
 		if(httpSession.getAttribute("username") == null) {
 			return "index";

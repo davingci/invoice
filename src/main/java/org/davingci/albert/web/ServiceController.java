@@ -72,9 +72,19 @@ public class ServiceController {
 	@PostMapping("/UpdateUserService") //url: /UpdateUserService?id={user.id}
 	public Response updateUser(@RequestParam("password") String password, @RequestParam("id") String id) {
 		User user = userService.getById(Integer.parseInt(id));
+		if(password.isEmpty()) {
+			return Response.builder().code(202).message("empty password").build();
+			}
 		user.setPassword(password);
 		userService.save(user);
-		return Response.builder().code(200).message("success").build();
+		return Response.builder().code(200).message("password changed").build();
+	}
+	
+	@PostMapping("/DeleteUserService")
+	public Response delUser(@RequestParam("id") String userid) {
+		userService.deleteById(Integer.parseInt(userid));
+		return Response.builder().code(200).message("user deleted").build();
+				
 	}
 	
 
