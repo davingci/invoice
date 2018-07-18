@@ -16,10 +16,10 @@
 							<div class="center">
 								<h1>
 									<i class="ace-icon fa fa-leaf green"></i>
-									<span class="red">发票管理系统</span>
+									<span class="red" th:utext="#{login.head}">发票管理系统</span>
 									<span class="white" id="id-text2"></span>
 								</h1>
-								<h4 class="blue" id="id-company-text">&copy; 研究所</h4>
+								<h4 class="blue" id="id-company-text" th:utext="#{login.org}">&copy; 研究所</h4>
 							</div>
 
 							<div class="space-6"></div>
@@ -28,25 +28,25 @@
 								<div id="login-box" class="login-box visible widget-box no-border">
 									<div class="widget-body">
 										<div class="widget-main">
-											<h4 class="header blue lighter bigger" th:utext="#{System.title}">
+											<h4 class="header blue lighter bigger" th:utext="#{login.title}">
 												<i class="ace-icon fa fa-coffee green"></i>
 												发票管理后台
 											</h4>
-											<h3 th:utext="#{System.note}">测试账号:admin 密码:admin</h3>
+											<h3 th:utext="#{login.note}">测试账号:admin 密码:admin</h3>
 											<div class="space-6"></div>
 												
 											<form id="loginForm">
 												<fieldset>
 													<label class="block clearfix">
 														<span class="block input-icon input-icon-right">
-															<input type="text" class="form-control" name="username" id="username" placeholder="用户名" />
+															<input type="text" class="form-control" name="username" id="username" th:placeholder="#{login.username}" />
 															<i class="ace-icon fa fa-user"></i>
 														</span>
 													</label>
 
 													<label class="block clearfix">
 														<span class="block input-icon input-icon-right">
-															<input type="password" class="form-control" name="password" id="password" placeholder="密码" />
+															<input type="password" class="form-control" name="password" id="password" th:placeholder="#{login.password}" />
 															<i class="ace-icon fa fa-lock"></i>
 														</span>
 													</label>
@@ -56,17 +56,17 @@
 													<div class="clearfix">
 														<label class="inline">
 															<input type="checkbox" class="ace" />
-															<span class="lbl"> 记住我</span>
+															<span class="lbl" th:utext="#{login.remember}"> 记住我</span>
 														</label>
 
-														<button type="button" id="btnLoginSubmit" class="width-35 pull-right btn btn-sm btn-primary">
+														<button type="button" id="btnLoginSubmit" class="width-30 pull-right btn btn-sm btn-primary">
 															<i class="ace-icon fa fa-key"></i>
-															<span class="bigger-110">登录</span>
+															<span class="bigger-110" th:utext="#{login.login}">登录</span>
 														</button>
 														
-														<a  th:href="@{/signup}" class="width-35  btn btn-sm btn-primary">
+														<a  th:href="@{/signup}" class="width-30  btn btn-sm btn-primary">
 															<i class="ace-icon fa fa-key"></i>
-															<span class="bigger-110">注册</span>
+															<span class="bigger-110" th:utext="#{login.register}">注册</span>
 														</a>
 													</div>
 
@@ -88,15 +88,15 @@
 							<div class="navbar-fixed-top align-right">
 								<br />
 								&nbsp;
-								<a id="btn-login-dark" href="#">黑色背景</a>
+								<a id="btn-login-dark" href="#" th:utext="#{login.black}">黑色背景</a>
 								&nbsp;
 								<span class="blue">/</span>
 								&nbsp;
-								<a id="btn-login-blur" href="#">灰色背景</a>
+								<a id="btn-login-blur" href="#" th:utext="#{login.grey}">灰色背景</a>
 								&nbsp;
 								<span class="blue">/</span>
 								&nbsp;
-								<a id="btn-login-light" href="#">白色背景</a>
+								<a id="btn-login-light" href="#" th:utext="#{login.white}">白色背景</a>
 								&nbsp; &nbsp; &nbsp;
 							</div>
 						</div>
