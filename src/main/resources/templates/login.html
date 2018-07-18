@@ -5,6 +5,8 @@
 	<body class="login-layout">
 	
 	<main role="main" layout:fragment="content">
+
+	
 	
 		<div class="main-container">
 			<div class="main-content">
@@ -26,11 +28,11 @@
 								<div id="login-box" class="login-box visible widget-box no-border">
 									<div class="widget-body">
 										<div class="widget-main">
-											<h4 class="header blue lighter bigger" >
+											<h4 class="header blue lighter bigger" th:utext="#{System.title}">
 												<i class="ace-icon fa fa-coffee green"></i>
 												发票管理后台
 											</h4>
-											<h3>测试账号:admin 密码:admin</h3>
+											<h3 th:utext="#{System.note}">测试账号:admin 密码:admin</h3>
 											<div class="space-6"></div>
 												
 											<form id="loginForm">
