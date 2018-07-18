@@ -227,8 +227,16 @@ $(document).ready(function () {
             contentType: false,
             success: function (response) {
                 if(response.code == 200) {
-                	    bootbox.alert(response.message);
-                        //window.location.href = baseurl + "/index";
+                	    //bootbox.alert(response.message);
+                        var dialog = bootbox.dialog({
+    						message: '<p class="text-center">Change password</p>',
+   							 closeButton: false,
+   							 size: 'small'
+							});
+							// do something in the background
+							setTimeout(function(){dialog.modal('hide')}, 2000);
+							setTimeout(function(){window.location.href = baseurl + "/index"},1000);
+                        
                 }
                 else {
                     bootbox.alert(response.message);
